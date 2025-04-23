@@ -46,7 +46,7 @@ A web application that generates beautiful flowcharts from Figma designs using A
 
 ## License
 
-MIT License - feel free to use this project for your own purposes.
+Feel free to use this project for your own purposes.
 
 ## Contributing
 
