@@ -1,0 +1,41 @@
+digraph {
+	bgcolor=black
+	node [color=white fillcolor=gray20 fontcolor=white fontsize=12 margin="0.3,0.1" shape=roundrectangle style=filled]
+	edge [color=white]
+	0 [label=Start]
+	0 -> 1
+	1 [label="Are you currently in a relationship?"]
+	1 -> 2
+	2 [label="Consider relationship status"]
+	2 -> 3
+	2 -> 1 [dir=both]
+	3 [label="Is your partner someone you want to marry?"]
+	3 -> 4
+	3 -> 2 [dir=both]
+	4 [label="Get engaged"]
+	4 -> 5
+	5 [label="Plan the wedding"]
+	5 -> 6
+	6 [label="Invite guests"]
+	6 -> 7
+	7 [label="Decide on a wedding date"]
+	7 -> 8
+	8 [label="Prepare for the big day"]
+	8 -> 9
+	9 [label="Get married"]
+	9 -> 10
+	10 [label="Marital bliss"]
+	10 -> 11
+	11 [label="Any issues in marriage?"]
+	11 -> 12
+	12 [label="Seek marital counseling"]
+	12 -> 13
+	13 [label="Resolve conflicts"]
+	13 -> 14
+	14 [label="Both partners commit to change"]
+	14 -> 11
+	14 -> 13 [dir=both]
+	14 [label="Enjoy a happy marriage"]
+	14 -> 15
+	15 [label=End]
+}

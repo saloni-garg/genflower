@@ -1,0 +1,75 @@
+/* Additional styles for the GitHub Pages version */
+
+/* Mermaid.js theme customization */
+.mermaid {
+    --mermaid-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    --mermaid-font-size: 16px;
+    --mermaid-primary-color: #6366f1;
+    --mermaid-primary-text-color: #1e293b;
+    --mermaid-primary-border-color: #4f46e5;
+    --mermaid-line-color: #334155;
+    --mermaid-secondary-color: #8b5cf6;
+    --mermaid-tertiary-color: #ec4899;
+}
+
+/* Node styles */
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon,
+.mermaid .node path {
+    fill: #f8fafc;
+    stroke: #334155;
+    stroke-width: 2px;
+}
+
+/* Conditional node (diamond) styles */
+.mermaid .node.conditional rect,
+.mermaid .node.conditional circle,
+.mermaid .node.conditional ellipse,
+.mermaid .node.conditional polygon,
+.mermaid .node.conditional path {
+    fill: #fef3c7;
+    stroke: #d97706;
+}
+
+/* Edge styles */
+.mermaid .edgePath .path {
+    stroke: #334155;
+    stroke-width: 2px;
+}
+
+/* Edge label styles */
+.mermaid .edgeLabel {
+    background-color: #f8fafc;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #334155;
+}
+
+/* Loading animation */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .flowchart-container {
+        max-height: 60vh;
+    }
+    
+    .mermaid {
+        font-size: 14px;
+    }
+    
+    .edgeLabel {
+        font-size: 12px;
+    }
+} 

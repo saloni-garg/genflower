@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenFlower</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-hover: #4f46e5;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --dark-text: #e2e8f0;
+            --dark-text-secondary: #94a3b8;
+            --dark-border: #334155;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .hero-container {
+            background-color: var(--dark-card);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--dark-border);
+        }
+        
+        .flowchart-container {
+            width: 100%;
+            max-width: 210mm; /* A4 width */
+            min-height: 297mm; /* A4 height */
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: auto;
+            max-height: 80vh;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        
+        .flowchart-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1rem;
+        }
+        
+        .input-field {
+            background-color: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            color: var(--dark-text);
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            transition: all 0.3s ease;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .btn-secondary {
+            background-color: var(--dark-card);
+            color: var(--dark-text);
+            border: 1px solid var(--dark-border);
+            transition: all 0.3s ease;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--dark-border);
+            transform: translateY(-1px);
+        }
+        
+        .card {
+            background-color: var(--dark-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--dark-border);
+        }
+        
+        .title-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .password-input {
+            background-color: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            color: var(--dark-text);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .password-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+        
+        pre {
+            background-color: var(--dark-bg);
+            color: var(--dark-text-secondary);
+            border: 1px solid var(--dark-border);
+            border-radius: 0.5rem;
+        }
+        
+        /* Custom scrollbar for the flowchart container */
+        .flowchart-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        .flowchart-container::-webkit-scrollbar-track {
+            background: var(--dark-card);
+            border-radius: 4px;
+        }
+        
+        .flowchart-container::-webkit-scrollbar-thumb {
+            background: var(--dark-border);
+            border-radius: 4px;
+        }
+        
+        .flowchart-container::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-5xl font-bold text-center mb-8 title-gradient">GenFlower</h1>
+        
+        <div class="max-w-2xl mx-auto card">
+            <div class="mb-6">
+                <label for="topic" class="block text-sm font-medium text-gray-300 mb-2">Enter your flowchart topic:</label>
+                <input type="text" id="topic" name="topic" 
+                       class="w-full px-4 py-3 input-field rounded-lg"
+                       placeholder="e.g., E-commerce Checkout Process, User Registration Flow, Data Analysis Pipeline">
+            </div>
+            
+            <button onclick="generateFlowchart()" 
+                    class="w-full btn-primary">
+                Generate Flowchart
+            </button>
+        </div>
+
+        <div id="result" class="max-w-7xl mx-auto mt-8 hidden">
+            <div class="hero-container">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-200 text-center">Generated Flowchart</h2>
+                <div class="flowchart-container">
+                    <div class="flowchart-wrapper">
+                        <img id="flowchartImage" class="hero-image" alt="Generated Flowchart">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-lg font-medium text-gray-200">Flowchart Data:</h3>
+                    <div id="dataLocked" class="flex items-center">
+                        <span class="text-sm text-gray-400 mr-2">🔒 Locked</span>
+                        <input type="password" id="dataPassword" placeholder="Enter password" 
+                               class="password-input mr-2">
+                        <button onclick="unlockData()" 
+                                class="btn-secondary">
+                            Unlock
+                        </button>
+                    </div>
+                    <div id="dataUnlocked" class="hidden">
+                        <span class="text-sm text-green-400">🔓 Unlocked</span>
+                    </div>
+                </div>
+                <pre id="flowchartOutput" class="p-4 rounded-lg overflow-x-auto hidden mt-4"></pre>
+            </div>
+        </div>
+        
+        <div id="loading" class="max-w-2xl mx-auto mt-8 text-center hidden">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-500"></div>
+            <p class="mt-2 text-gray-400">Generating flowchart...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 

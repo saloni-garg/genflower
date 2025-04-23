@@ -1,0 +1,22 @@
+digraph {
+	bgcolor=black
+	node [color=white fillcolor=gray20 fontcolor=white fontsize=12 margin="0.3,0.1" shape=roundrectangle style=filled]
+	edge [color=white fontcolor=white]
+	0 [label=Start]
+	1 [label="Collect User Data"]
+	2 [label="Preprocess Data"]
+	3 [label="Feature Extraction"]
+	4 [label="Build Recommendation Model"]
+	5 [label="Evaluate Model Performance"]
+	6 [label="Deploy Model"]
+	7 [label="Provide Recommendations"]
+	8 [label=End]
+	0 -> 1 [dir=both]
+	1 -> 2 [dir=both]
+	2 -> 3 [dir=both]
+	3 -> 4 [dir=both]
+	4 -> 5 [dir=both]
+	5 -> 6 [dir=both]
+	6 -> 7 [dir=both]
+	7 -> 8 [dir=both]
+}
