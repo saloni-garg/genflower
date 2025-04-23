@@ -1,4 +1,4 @@
-# Figma GenAI Flowcharter
+# Figma GenAI Flowchart Creator - GenFlower
 
 A web application that generates beautiful flowcharts from Figma designs using AI. This tool helps you visualize and document your design workflows automatically.
 
